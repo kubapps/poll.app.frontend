@@ -9,9 +9,9 @@ on:
   pull_request:
    branches: [ master ]
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+#env:
+#  REGISTRY: ghcr.io
+#  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   BuildandPublish_DockerImage:
@@ -25,6 +25,10 @@ jobs:
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
+        env:
+          REGISTRY: ghcr.io
+          IMAGE_NAME: ${{ github.repository }}
+          
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
