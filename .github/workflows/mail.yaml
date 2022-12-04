@@ -1,0 +1,18 @@
+name: Survey FrontEnd application
+
+on:
+  push:
+   branches: [ master ]
+  pull_request:
+    branches: [ master ]
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build & Push Image
+      run: |
+        echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "bmklearnings" --password-stdin
+        docker image build -t kubapps/poll.app.frontend:v1 .
+        docker push kubapps/poll.app.frontend:v1
