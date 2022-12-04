@@ -20,13 +20,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Run Super-Linter
+        uses: github/super-linter@v3
+
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_PAT }}
-          
+
       - name: Build the Docker image and Push it to GHCR
         run: |
           docker build . -t ghcr.io/kubapps/poll.app.frontend:v1
