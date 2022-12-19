@@ -33,5 +33,5 @@ jobs:
 
       - name: Build the Docker image and Push it to GHCR
         run: |
-          docker build . -t ghcr.io/kubapps/poll.app.frontend:v1
-          docker push ghcr.io/kubapps/poll.app.frontend:v1
+          docker build . -t ghcr.io/kubapps/poll.app.frontend:v2
+          docker push ghcr.io/kubapps/poll.app.frontend:v2
